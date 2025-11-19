@@ -1,0 +1,27 @@
+name: Run Librelane
+  # You may pin to the exact commit or the version.
+  # uses: fossi-foundation/librelane-action@ea7ab2054b7e8e5903357b39b20ff3c2ff2f90c2
+  uses: fossi-foundation/librelane-action@v0.1
+  #with:
+    # The GitHub repository to clone
+    #repo: # optional, default is https://github.com/librelane/librelane
+    # The version or branch to checkout
+    #branch: # optional, default is 2.4.0
+    # The working directory to run Verilator in
+    #working-directory: # optional, default is .
+    # The arguments to pass to Verilator
+    #arguments: 
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Librelane Action
+        uses: fossi-foundation/librelane-action@v0.1
+        with:
+          arguments: --version
