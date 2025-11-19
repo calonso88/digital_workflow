@@ -1,0 +1,6 @@
+{
+  "DESIGN_NAME": "i2c_slave",
+  "VERILOG_FILES": ["dir::i2c_slave.v"],
+  "CLOCK_PERIOD": 25,
+  "CLOCK_PORT": "scl_in"
+}

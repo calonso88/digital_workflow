@@ -19,6 +19,6 @@ jobs:
           # The version or branch to checkout
           branch: dev # optional, default is 2.4.0
           # The working directory to run Verilator in
-          #working-directory: # optional, default is .
+          working-directory: src # optional, default is .
           # The arguments to pass to Verilator
-          arguments: --version
+          arguments: --pdk ihp-sg13g2 librelane_config.json
