@@ -14,5 +14,5 @@ jobs:
         with:
           version: latest
           working-directory: src
-          run: 'verilator --version'
+          #run: 'verilator --version'
           #lint-files: 'src'
