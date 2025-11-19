@@ -22,3 +22,8 @@ jobs:
           working-directory: src # optional, default is .
           # The arguments to pass to Verilator
           arguments: --pdk ihp-sg13g2 librelane_config.json
+
+      - name: Upload Librelane logs
+        uses: actions/upload-artifact@v4
+        with:
+          path: src/runs/
