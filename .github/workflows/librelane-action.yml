@@ -1,13 +1,13 @@
 name: Run Librelane
 
-on: [push, workflow_dispatch]
+on: push
 
 jobs:
   Run-Librelane-Action:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: Run Librelane Action
         # You may pin to the exact commit or the version.
