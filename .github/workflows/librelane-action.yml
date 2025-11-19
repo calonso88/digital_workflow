@@ -3,7 +3,7 @@ name: Run Librelane
 on: [push, workflow_dispatch]
 
 jobs:
-  test:
+  Run-Librelane-Action:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
