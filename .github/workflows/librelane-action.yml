@@ -26,4 +26,8 @@ jobs:
       - name: Upload Librelane logs
         uses: actions/upload-artifact@v4
         with:
-          path: src/runs/
+          path: src/*
+        if-no-files-found: warn
+        compression-level: 6
+        overwrite: false
+        include-hidden-files: false
