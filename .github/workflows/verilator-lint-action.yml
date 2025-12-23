@@ -19,5 +19,4 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          working-directory: 'src'
           lint-files: 'src/i2c_slave.v'
