@@ -13,10 +13,11 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          run: '--version'
+          arguments: '--version'
 
       - name: Verilator Linting
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
+          working-directory: 'src'
           lint-files: 'src/i2c_slave.v'
