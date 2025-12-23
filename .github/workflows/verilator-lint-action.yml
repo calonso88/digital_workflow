@@ -13,7 +13,7 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          run: 'verilator --version'
+          run: '--version'
 
       - name: Verilator Linting
         uses: fossi-foundation/verilator-action@v0.3
