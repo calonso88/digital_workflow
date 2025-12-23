@@ -13,4 +13,4 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          lint-files: '*.v'
+          lint-files: 'src/*.v'
