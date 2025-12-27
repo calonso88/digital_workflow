@@ -22,32 +22,32 @@ jobs:
           python-version: '3.12'
 
       # Install required packages to run simulation
-      #- name: Install Python packages
-      #  shell: bash
-      #  run: pip install -r digital/bin/requirements.txt
+      - name: Install Python packages
+        shell: bash
+        run: pip install -r tb/bin/requirements.txt
 
       # Run simulation
-      #- name: Run tests
-      #  run: |
-      #    cd digital/test
-      #    make clean
-      #    make
-      #    # make will return success even if the test fails, so check for failure in the results.xml
-      #    ! grep failure results.xml
+      - name: Run tests
+        run: |
+          cd tb
+          make clean
+          make
+          # make will return success even if the test fails, so check for failure in the results.xml
+          ! grep failure results.xml
 
       # Collect results
-      #- name: Test Summary
-      #  uses: test-summary/action@v2.3
-      #  with:
-      #    paths: "digital/test/results.xml"
-      #  if: always()
+      - name: Test Summary
+        uses: test-summary/action@v2.3
+        with:
+          paths: "tb/results.xml"
+        if: always()
 
       # Upload simulation wave dump
-      #- name: upload vcd
-      #  if: success() || failure()
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: test-fst
-      #    path: |
-      #      digital/test/tb.fst
-      #      digital/test/results.xml
+      - name: upload simulation dump
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-fst
+          path: |
+            tb/tb.fst
+            tb/results.xml
