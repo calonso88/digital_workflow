@@ -48,6 +48,6 @@ jobs:
       #  uses: actions/upload-artifact@v4
       #  with:
       #    name: test-fst
-          path: |
-            digital/test/tb.fst
-            digital/test/results.xml
+      #    path: |
+      #      digital/test/tb.fst
+      #      digital/test/results.xml
