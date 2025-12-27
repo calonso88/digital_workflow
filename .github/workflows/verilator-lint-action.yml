@@ -4,7 +4,7 @@ on: push
 
 jobs:
   Run-Verilator-Lint-action:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -19,4 +19,4 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          lint-files: 'src/i2c_slave.v'
+          lint-files: 'rtl/i2c_slave.v'
