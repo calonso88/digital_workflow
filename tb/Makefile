@@ -11,7 +11,7 @@ PROJECT_SOURCES = i2c_slave.v
 ifneq ($(GATES),yes)
 
 # RTL simulation:
-SIM_BUILD = sim_build/rtl
+SIM_BUILD       = sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
 
 else
@@ -39,7 +39,7 @@ VERILOG_SOURCES += $(PWD)/src/tb.v
 TOPLEVEL = tb
 
 # List test modules to run, separated by commas and without the .py suffix:
-COCOTB_TEST_MODULES = tests/test
+COCOTB_TEST_MODULES = test
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim

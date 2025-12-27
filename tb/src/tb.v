@@ -30,9 +30,9 @@ module tb ();
     .start     (start),
     .stop      (stop),
     .scl_in    (scl_in),
-    .scl_oe    (sdl_oe),
+    .scl_oe    (scl_oe),
     .sda_in    (sda_in),
-    .sda_oe    (sda_oe)
+    .sda_oeb   (sda_oeb)
   );
 
   // Dump the signals to a FST file. You can view it with gtkwave or surfer.

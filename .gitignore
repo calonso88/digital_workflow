@@ -11,6 +11,6 @@
 syn/runs*
 
 # Directories and files created in behavioural simulating of digital blocks
-test/sim_build
-test/__pycache__/
-test/results.xml
+tb/sim_build
+tb/__pycache__/
+tb/results.xml
