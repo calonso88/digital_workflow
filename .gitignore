@@ -1,0 +1,16 @@
+# Add here all files that you'd like to ignore in git
+
+# python virtual enviroment
+*/.venv/*
+# no digital simulation dump files (.vcd)
+*.vcd
+# no digital simulation dump files (.fst)
+*.fst
+
+# Placeholder for directories created locally each time librelane is run
+syn/runs*
+
+# Directories and files created in behavioural simulating of digital blocks
+test/sim_build
+test/__pycache__/
+test/results.xml
