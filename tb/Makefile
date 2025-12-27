@@ -38,6 +38,9 @@ COMPILE_ARGS += -I$(SRC_DIR)
 VERILOG_SOURCES += $(PWD)/src/tb.v
 TOPLEVEL = tb
 
+# Add path for python tests
+export PYTHONPATH := $(PWD)/tests:$(PYTHONPATH)
+
 # List test modules to run, separated by commas and without the .py suffix:
 COCOTB_TEST_MODULES = test
 
