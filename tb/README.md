@@ -1,3 +1,21 @@
+# Setup environment for digital flow
+
+## Use Python3.12
+## Requires libpython3.12-dev
+## Use IcarusVerilog v12.0+
+
+## Create python virtual environment
+```sh
+source ./bin/venv.src.me
+```
+
+## Activate virtual environment
+```sh
+source .venv/bin/activate.csh
+```
+
+
+
 # Sample testbench
 
 This is a sample testbench for a digital project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
