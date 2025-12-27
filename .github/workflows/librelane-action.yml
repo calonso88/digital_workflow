@@ -1,6 +1,6 @@
 name: Run Librelane
 
-on: push
+on: [push, workflow_dispatch]
 
 jobs:
   Run-Librelane-Action:
@@ -26,4 +26,5 @@ jobs:
       - name: Upload Librelane logs
         uses: actions/upload-artifact@v4
         with:
+          name: librelane-logs
           path: syn

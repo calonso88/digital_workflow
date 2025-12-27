@@ -1,6 +1,6 @@
 name: Verilator Lint
 
-on: push
+on: [push, workflow_dispatch]
 
 jobs:
   Run-Verilator-Lint-action:
