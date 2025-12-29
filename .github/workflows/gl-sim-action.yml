@@ -1,12 +1,17 @@
-name: Gate Level Simulatin
+name: Gate Level Simulation
 
-inputs:
-  test-dir:
-    description: 'The directory with the Makefile for running the tests'
-    required: true
-    default: 'test'
+on: [push, workflow_dispatch]
 
-runs:
+#inputs:
+#  test-dir:
+#    description: 'The directory with the Makefile for running the tests'
+#    required: true
+#    default: 'test'
+
+jobs:
+  test:
+  
+  runs-on: ubuntu-24.04
   using: 'composite'
   steps:
     #- name: Download GDS artifact
