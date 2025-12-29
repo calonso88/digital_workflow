@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-24.04
     #using: 'composite'
     steps:
+
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
     #  - name: Download GDS artifact
     #    uses: actions/download-artifact@v4
     #    with:
