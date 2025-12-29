@@ -10,21 +10,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v5
 
-      # Install icarus verilog simulator
-      - name: Install iverilog
-        shell: bash
-        run: sudo apt-get update && sudo apt-get install -y iverilog
-
-      # Set Python up and install cocotb
+      # Set Python up
       - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # Install required packages to run simulation
+      # Install required packages
       - name: Install Python packages
         shell: bash
         run: pip install -r tb/bin/requirements.txt
+
+      # Install icarus verilog simulator
+      - name: Install iverilog
+        shell: bash
+        run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Run simulation
       - name: Run tests
@@ -37,10 +37,10 @@ jobs:
 
       # Collect results
       - name: Test Summary
+        if: always()
         uses: test-summary/action@v2.3
         with:
           paths: "tb/results.xml"
-        if: always()
 
       # Upload simulation wave dump
       - name: upload simulation dump
