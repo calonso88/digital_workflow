@@ -1,4 +1,4 @@
-name: Run Librelane
+name: Run Librelane Action
 
 on: [push, workflow_dispatch]
 

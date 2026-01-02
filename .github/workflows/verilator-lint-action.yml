@@ -1,4 +1,4 @@
-name: Verilator Lint
+name: Verilator Lint Action
 
 on: [push, workflow_dispatch]
 
