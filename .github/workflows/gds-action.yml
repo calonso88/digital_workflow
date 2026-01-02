@@ -1,0 +1,7 @@
+name: GDS Workflow
+
+on: [push, workflow_dispatch]
+
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/librelane-action.yml

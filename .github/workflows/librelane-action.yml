@@ -1,9 +1,9 @@
-name: Run Librelane Action
+name: Run Librelane Workflow
 
 on: [push, workflow_dispatch]
 
 jobs:
-  Run-Librelane-Action:
+  Run-Librelane-Workflow:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code

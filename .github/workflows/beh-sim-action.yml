@@ -1,9 +1,9 @@
-name: Behavioural Simulation Action
+name: Behavioural Simulation Workflow
 
 on: [push, workflow_dispatch]
 
 jobs:
-  Run-Behavioural-Simulation-Action:
+  Run-Behavioural-Simulation-Workflow:
     runs-on: ubuntu-24.04
     steps:
       # Checkout repository

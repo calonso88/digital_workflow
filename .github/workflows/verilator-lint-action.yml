@@ -1,14 +1,14 @@
-name: Verilator Lint Action
+name: Verilator Lint Workflow
 
 on: [push, workflow_dispatch]
 
 jobs:
-  Run-Verilator-Lint-action:
+  Run-Verilator-Lint-Workflow:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-      
+
       - name: Verilator version
         uses: fossi-foundation/verilator-action@v0.3
         with:

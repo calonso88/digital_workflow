@@ -1,4 +1,4 @@
-name: Gate Level Simulation Action
+name: Gate Level Simulation Workflow
 
 on: [push, workflow_dispatch]
 
@@ -9,7 +9,7 @@ on: [push, workflow_dispatch]
 #    default: 'test'
 
 jobs:
-  Run-Gate-Level-Simuation-Action:
+  Run-Gate-Level-Simuation-Workflow:
     runs-on: ubuntu-24.04
     #using: 'composite'
     steps:
