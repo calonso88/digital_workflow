@@ -40,12 +40,12 @@ jobs:
     #      PDK_VERSION=$PDK_VERSION
     #      __EOF
 
-    #  - name: Install PDK
-    #    uses: TinyTapeout/ciel-action@v1
-    #    with:
-    #      pdk_name: ${{ env.PDK }}
-    #      pdk_version: ${{ env.PDK_VERSION }}
-    #      pdk_root: ${{ env.PDK_ROOT }}
+      - name: Install PDK
+        uses: TinyTapeout/ciel-action@v1
+        with:
+          pdk_name: ihp-sg13g2
+          pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
+          pdk_root: /home/runner/pdk
 
       # Set Python up
       - name: Setup python
