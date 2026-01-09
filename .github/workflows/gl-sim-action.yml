@@ -8,10 +8,10 @@ jobs:
     steps:
 
       # Download gate level netlist
-      - name: Download GDS artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: librelane-logs
+      #- name: Download GDS artifact
+      #  uses: actions/download-artifact@v5
+      #  with:
+      #    name: librelane-logs
 
       - name: Install PDK
         uses: TinyTapeout/ciel-action@v1
