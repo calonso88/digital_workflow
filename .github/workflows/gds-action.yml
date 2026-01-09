@@ -4,12 +4,15 @@ on: [push, workflow_dispatch]
 
 jobs:
 
-  #Run-Verilator-Lint-Workflow:
-  #  uses: ./.github/workflows/verilator-lint.yml
+  Run-Verilator-Lint-Workflow:
+    uses: ./.github/workflows/verilator-lint.yml
+
+  Run-Behavioural-Simulation-Workflow:
+    uses: ./.github/workflows/verilator-lint.yml
 
   Run-GDS-Workflow:
     uses: ./.github/workflows/librelane-action.yml
 
-  Run-Gate-Level-Workflow:
+  Run-Gate-Level-Simulation-Workflow:
     needs: Run-GDS-Workflow
     uses: ./.github/workflows/gl-sim-action.yml

@@ -1,6 +1,6 @@
 name: Gate Level Simulation Workflow
 
-on: [push, workflow_dispatch, workflow_call]
+on: [workflow_dispatch, workflow_call]
 
 #inputs:
 #  test-dir:
@@ -13,10 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
 
-      # Checkout repository
-      - name: Checkout repo
-        uses: actions/checkout@v5
-
+      # Download gate level netlist
       - name: Download GDS artifact
         uses: actions/download-artifact@v5
         with:
@@ -61,6 +58,10 @@ jobs:
       - name: Install iverilog
         shell: bash
         run: sudo apt-get update && sudo apt-get install -y iverilog
+
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v5
 
       # Run simulation
       - name: Run Gate Level Simulation tests
