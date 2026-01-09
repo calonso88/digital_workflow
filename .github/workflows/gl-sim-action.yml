@@ -43,25 +43,25 @@ jobs:
           pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
           pdk_root: /home/runner/pdk
 
+      # Install icarus verilog simulator
+      - name: Install iverilog
+        shell: bash
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+
       # Set Python up
       - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
       # Install required packages
       - name: Install Python packages
         shell: bash
         run: pip install -r tb/bin/requirements.txt
-
-      # Install icarus verilog simulator
-      - name: Install iverilog
-        shell: bash
-        run: sudo apt-get update && sudo apt-get install -y iverilog
-
-      # Checkout repository
-      - name: Checkout repo
-        uses: actions/checkout@v5
 
       # Run simulation
       - name: Run Gate Level Simulation tests
