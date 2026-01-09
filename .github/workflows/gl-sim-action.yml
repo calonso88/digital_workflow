@@ -47,7 +47,7 @@ jobs:
           cd tb
           rm -f tb.vcd tb.fst results.xml
           make clean
-
+          make
           # `make` will return success even if the tests fail, so check for failure in results.xml
           ! grep failure results.xml
 
