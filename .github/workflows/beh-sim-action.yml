@@ -49,5 +49,6 @@ jobs:
         with:
           name: test-fst
           path: |
+            tb/tb.vcd
             tb/tb.fst
             tb/results.xml

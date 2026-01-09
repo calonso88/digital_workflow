@@ -7,12 +7,13 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
 
-      # Download gate level netlist
-      #- name: Download GDS artifact
-      #  uses: actions/download-artifact@v5
-      #  with:
-      #    name: librelane-logs
+      # Download Librelane artifact
+      - name: Download GDS artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: librelane-logs
 
+      # Install PDK
       - name: Install PDK
         uses: TinyTapeout/ciel-action@v1
         with:
@@ -47,7 +48,7 @@ jobs:
           cd tb
           rm -f tb.vcd tb.fst results.xml
           make clean
-          make
+          make GATES=yes
           # `make` will return success even if the tests fail, so check for failure in results.xml
           ! grep failure results.xml
 
