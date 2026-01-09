@@ -1,6 +1,6 @@
 name: Gate Level Simulation Workflow
 
-on: [push, workflow_dispatch]
+on: [push, workflow_dispatch, workflow_call]
 
 #inputs:
 #  test-dir:
@@ -11,17 +11,16 @@ on: [push, workflow_dispatch]
 jobs:
   Run-Gate-Level-Simuation-Workflow:
     runs-on: ubuntu-24.04
-    #using: 'composite'
     steps:
 
       # Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v5
 
-    #  - name: Download GDS artifact
-    #    uses: actions/download-artifact@v4
-    #    with:
-    #      name: tt_submission
+      - name: Download GDS artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: librelane-logs
 
     #  - name: Set up environment variables
     #    working-directory: tt_submission
@@ -64,32 +63,30 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Run simulation
-      #- name: Run tests
-      #  shell: bash
-      #  run: |
-      #    cp tt_submission/*.v "${{ inputs.test-dir }}/gate_level_netlist.v"
-      #    cd "${{ inputs.test-dir }}"
-      #    rm -f tb.vcd tb.fst results.xml
-      #    make clean
-      #    GATES=yes make
+      - name: Run Gate Level Simulation tests
+        shell: bash
+        run: |
+          cd "tb"
+          rm -f tb.vcd tb.fst results.xml
+          make clean
 
-      #    # `make` will return success even if the tests fail, so check for failure in results.xml
-      #    test -f results.xml
-      #    ! grep failure results.xml
+          # `make` will return success even if the tests fail, so check for failure in results.xml
+          test -f results.xml
+          ! grep failure results.xml
 
-      #- name: Upload Waveform and Test Results
-      #  if: always()
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #      name: gatelevel_test_results
-      #      path: |
-      #        ${{ inputs.test-dir }}/tb.vcd
-      #        ${{ inputs.test-dir }}/tb.fst
-      #        ${{ inputs.test-dir }}/results.xml
-      #        ${{ inputs.test-dir }}/output/*
+      - name: Upload Waveform and Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+            name: gatelevel_test_results
+            path: |
+              tb/tb.vcd
+              tb/tb.fst
+              tb/results.xml
+              tb/output/*
 
-      #- name: Test Summary
-      #  if: always()
-      #  uses: test-summary/action@v2.3
-      #  with:
-      #    paths: ${{ inputs.test-dir }}/results.xml
+      - name: Test Summary
+        if: always()
+        uses: test-summary/action@v2.3
+        with:
+          paths: tb/results.xml
