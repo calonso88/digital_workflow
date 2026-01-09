@@ -8,10 +8,10 @@ jobs:
     steps:
 
       # Download Librelane artifact
-      - name: Download GDS artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: librelane-logs
+      #- name: Download GDS artifact
+      #  uses: actions/download-artifact@v5
+      #  with:
+      #    name: librelane-logs
 
       # Install PDK
       - name: Install PDK
