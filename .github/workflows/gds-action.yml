@@ -5,10 +5,10 @@ on: [push, workflow_dispatch]
 jobs:
 
   Run-Verilator-Lint-Workflow:
-    uses: ./.github/workflows/verilator-lint.yml
+    uses: ./.github/workflows/verilator-lint-action.yml
 
   Run-Behavioural-Simulation-Workflow:
-    uses: ./.github/workflows/verilator-lint.yml
+    uses: ./.github/workflows/beh-sim-action.yml
 
   Run-GDS-Workflow:
     uses: ./.github/workflows/librelane-action.yml
