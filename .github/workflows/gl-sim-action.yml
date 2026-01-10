@@ -40,6 +40,15 @@ jobs:
       - name: Install Python packages
         shell: bash
         run: pip install -r tb/bin/requirements.txt
+      
+      # Copy gate level netlist
+      - name : Copy Gate Leve netlist from artifact
+        shell: bash
+        run: |
+          find /home/runner/librelane-logs \
+          -path "*/final/nl/i2c_slave.nl.v" \
+          -type f \
+          -exec cp {} tb/gate_level_netlist.v \;
 
       # Run simulation
       - name: Run Gate Level Simulation tests
