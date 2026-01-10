@@ -45,7 +45,7 @@ jobs:
       - name : Copy Gate Leve netlist from artifact
         shell: bash
         run: |
-          find /home/runner/librelane-logs \
+          find librelane-logs \
           -path "*/final/nl/i2c_slave.nl.v" \
           -type f \
           -exec cp {} tb/gate_level_netlist.v \;
