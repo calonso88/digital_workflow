@@ -10,9 +10,9 @@ jobs:
   #Run-Behavioural-Simulation-Workflow:
   #  uses: ./.github/workflows/beh-sim-action.yml
 
-  #Run-GDS-Workflow:
-  #  uses: ./.github/workflows/librelane-action.yml
+  Run-GDS-Workflow:
+    uses: ./.github/workflows/librelane-action.yml
 
   Run-Gate-Level-Simulation-Workflow:
-    #needs: Run-GDS-Workflow
+    needs: Run-GDS-Workflow
     uses: ./.github/workflows/gl-sim-action.yml
