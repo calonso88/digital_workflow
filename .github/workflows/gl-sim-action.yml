@@ -45,7 +45,7 @@ jobs:
       - name: Run Gate Level Simulation tests
         shell: bash
         run: |
-          tree /home/runner/
+          tree /home/runner/pdk
 
       - name: Test Summary
         if: always()
