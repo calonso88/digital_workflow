@@ -8,10 +8,10 @@ jobs:
     steps:
 
       # Download Librelane artifact
-      #- name: Download GDS artifact
-      #  uses: actions/download-artifact@v5
-      #  with:
-      #    name: librelane-logs
+      - name: Download GDS artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: librelane-logs
 
       # Install PDK
       - name: Install PDK
@@ -22,9 +22,9 @@ jobs:
           pdk_root: /home/runner/pdk
 
       # Install icarus verilog simulator
-      #- name: Install iverilog
-      #  shell: bash
-      #  run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Install iverilog
+        shell: bash
+        run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Set Python up
       - name: Setup python
@@ -52,7 +52,7 @@ jobs:
           # `make` will return success even if the tests fail, so check for failure in results.xml
           ! grep failure results.xml
 
-      #- name: Test Summary
+      - name: Test Summary
         if: always()
         uses: test-summary/action@v2.3
         with:
