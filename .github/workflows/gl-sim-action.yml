@@ -45,9 +45,14 @@ jobs:
       - name: Run Gate Level Simulation tests
         shell: bash
         run: |
-          tree /home/runner/pdk/ciel/ihp-sg13g2
+          cd tb
+          rm -f tb.vcd tb.fst results.xml
+          make clean
+          make GATES=yes
+          # `make` will return success even if the tests fail, so check for failure in results.xml
+          ! grep failure results.xml
 
-      - name: Test Summary
+      #- name: Test Summary
         if: always()
         uses: test-summary/action@v2.3
         with:
