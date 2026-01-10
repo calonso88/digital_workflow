@@ -45,7 +45,7 @@ jobs:
       - name: Run Gate Level Simulation tests
         shell: bash
         run: |
-          tree /home/runner/pdk/ihp-sg13g2
+          tree /home/runner/pdk/ciel/ihp-sg13g2
 
       - name: Test Summary
         if: always()
