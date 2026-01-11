@@ -16,4 +16,4 @@ tb/sim_build
 tb/results.xml
 
 # Ignore gate level netlist file
-tb/gate_level_netlist.vc
+tb/gate_level_netlist.v
