@@ -22,10 +22,13 @@ jobs:
           pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
           pdk_root: /home/runner/pdk
 
-      # Install icarus verilog simulator
+      # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
       - name: Install iverilog
         shell: bash
-        run: sudo apt-get update && sudo apt-get install -y iverilog
+        run: |
+          wget https://github.com/TinyTapeout/iverilog/releases/download/13.0-git-d8c3c51/iverilog_13.0-git-d8c3c51a-1_amd64.deb
+          sudo apt-get update -y
+          sudo apt-get install -y ./iverilog_13.0-git-d8c3c51a-1_amd64.deb
 
       # Checkout repository
       - name: Checkout repo
