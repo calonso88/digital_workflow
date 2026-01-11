@@ -56,7 +56,6 @@ jobs:
         shell: bash
         run: |
           cd tb
-          tree
           rm -f tb.vcd tb.fst results.xml
           make clean
           make GATES=yes
