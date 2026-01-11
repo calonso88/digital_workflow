@@ -12,6 +12,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: librelane-logs
+          path: ~/librelane_logs_dir
 
       # Install PDK
       - name: Install PDK
@@ -45,9 +46,7 @@ jobs:
       - name : Copy Gate Level netlist from artifact
         shell: bash
         run: |
-          pwd
-          tree
-          find \
+          find ~/librelane_logs_dir \
           -path "*/final/nl/i2c_slave.nl.v" \
           -type f \
           -exec cp {} tb/gate_level_netlist.v \;
