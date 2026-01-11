@@ -1,7 +1,7 @@
 # Python packages dependencies
 
 # COCOTB
-cocotb == 2.0.1
+cocotb==2.0.1
 
 # Python framework for tests
 pytest==8.4.2
