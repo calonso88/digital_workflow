@@ -42,6 +42,8 @@ reg vld_plse;                     // data valid pulse
 
 wire start_rst;                   // reset signals for START and STOP bits
 
+wire caio_test;                   // Check unused in lint flow
+
 /*****************************************
  Generate reset signals for start and stop
 *****************************************/
