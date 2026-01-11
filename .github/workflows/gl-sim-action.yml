@@ -46,6 +46,7 @@ jobs:
         shell: bash
         run: |
           pwd
+          tree
           find \
           -path "*/final/nl/i2c_slave.nl.v" \
           -type f \
