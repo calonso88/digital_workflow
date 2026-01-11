@@ -24,7 +24,9 @@ jobs:
       # Install icarus verilog simulator
       - name: Install iverilog
         shell: bash
-        run: sudo apt-get update && sudo apt-get install -y iverilog
+        run: | 
+          sudo apt-get update && sudo apt-get install -y iverilog
+          iverilog -v
 
       # Run simulation
       - name: Run tests
