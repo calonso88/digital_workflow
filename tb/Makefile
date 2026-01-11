@@ -22,6 +22,7 @@ COMPILE_ARGS    += -DGL_TEST
 COMPILE_ARGS    += -DFUNCTIONAL
 COMPILE_ARGS    += -DSIM
 PDK_ROOT        ?= /home/runner/pdk/ihp-sg13g2
+#PDK_ROOT        ?= /home/caio/.ciel/ihp-sg13g2
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_io/verilog/sg13g2_io.v
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
 
