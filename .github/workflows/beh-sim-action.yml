@@ -43,7 +43,7 @@ jobs:
           paths: "tb/results.xml"
 
       # Upload simulation wave dump
-      - name: upload simulation dump
+      - name: Upload Waveform and Test Results
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
