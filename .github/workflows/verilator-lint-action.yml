@@ -19,5 +19,5 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          arguments: '-lint_only --Wall --top-module i2c_slave rtl/i2c_slave.v'
+          arguments: '-lint-only --Wall --top-module i2c_slave ./rtl/i2c_slave.v'
           #lint-files: 'rtl/i2c_slave.v'
