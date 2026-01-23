@@ -15,13 +15,6 @@ jobs:
         shell: bash
         run: pip install -r tb/bin/requirements.txt
 
-      # Install Verilator
-      - name: Verilator version
-        uses: fossi-foundation/verilator-action@v0.3
-        with:
-          version: latest
-          arguments: '--version'
-
       # Go to TB folder
       - name: Peprare for running simulation
         shell: bash
@@ -29,11 +22,20 @@ jobs:
           cd tb
           make clean
 
+      # Install Verilator
+      - name: Verilator version
+        uses: fossi-foundation/verilator-action@v0.3
+        with:
+          version: latest
+          arguments: '--version'
+
       # Run behavioral simulation with Verilator
       - name: Verilator Behavioural simulation
-        shell: bash
-        run: verilator --version
-        #run: make SIM=verilator
+        uses: fossi-foundation/verilator-action@v0.3
+        with:
+          version: latest
+          run: make SIM=verilator
+        
 
       # Collect results
       - name: Test Summary
