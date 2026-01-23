@@ -3,7 +3,7 @@ name: Gate Level Simulation Workflow with iverilog
 on: [workflow_dispatch, workflow_call]
 
 jobs:
-  Run-Gate-Level-Simuation-Workflow:
+  Run-Gate-Level-Simuation-Iverilog-Workflow:
     runs-on: ubuntu-24.04
     steps:
 
@@ -75,7 +75,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-            name: gatelevel_test_results
+            name: gatelevel_test_results_iverilog
             path: |
               tb/tb.vcd
               tb/tb.fst

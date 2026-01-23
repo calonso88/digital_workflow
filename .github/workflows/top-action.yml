@@ -16,6 +16,6 @@ jobs:
   Run-GDS-Workflow:
     uses: ./.github/workflows/librelane-action.yml
 
-  Run-Gate-Level-Simulation-Workflow:
+  Run-Gate-Level-Simulation-Iverilog-Workflow:
     needs: Run-GDS-Workflow
     uses: ./.github/workflows/gl-sim-iverilog-action.yml
