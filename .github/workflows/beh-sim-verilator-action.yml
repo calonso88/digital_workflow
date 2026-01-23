@@ -18,7 +18,7 @@ jobs:
       # Install Verilator
       - name: Install verilator
         shell: bash
-        run: run: sudo apt-get update && sudo apt-get install -y verilator
+        run: sudo apt-get update && sudo apt-get install -y verilator
 
       # Run simulation
       - name: Run tests
