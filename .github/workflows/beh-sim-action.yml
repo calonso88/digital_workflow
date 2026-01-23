@@ -21,17 +21,17 @@ jobs:
         shell: bash
         run: pip install -r tb/bin/requirements.txt
 
-      # Install icarus verilog simulator
-      - name: Install iverilog
+      # Install verilator simulator
+      - name: Install verilator
         shell: bash
-        run: sudo apt-get update && sudo apt-get install -y iverilog
+        run: sudo apt-get update && sudo apt-get install -y verilator
 
       # Run simulation
       - name: Run tests
         run: |
           cd tb
           make clean
-          make
+          make SIM=verilator
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
 
