@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           cd tb
-          make clean SIM=verilator
+          make clean
 
       # Run behavioral simulation with Verilator
       - name: Verilator Behavioural simulation
