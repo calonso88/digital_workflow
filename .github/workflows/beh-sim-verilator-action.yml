@@ -34,7 +34,7 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          run: make SIM=verilator
+          run: 'make SIM=verilator'
         
 
       # Collect results
