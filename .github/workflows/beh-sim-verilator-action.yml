@@ -10,14 +10,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      # Install and run tcsh
-      - name: Install and activate tcsh
-        shell: bash
-        run: sudo apt-get install tcsh
-
       # Get python packages
       - name: Install Python packages
-        shell: tcsh
+        shell: bash
         run: pip install -r tb/bin/requirements.txt
 
       # Install Verilator
@@ -29,7 +24,7 @@ jobs:
 
       # Run behavioral simulation with Verilator
       - name: Verilator Behavioural simulation
-        shell: tcsh
+        shell: bash
         run: |
           cd tb
           make clean

@@ -10,11 +10,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v5
 
-      # Install and run tcsh
-      - name: Install and activate tcsh
-        shell: bash
-        run: sudo apt-get install tcsh
-
       # Set Python up
       - name: Setup python
         uses: actions/setup-python@v5
@@ -23,12 +18,12 @@ jobs:
 
       # Install required packages
       - name: Install Python packages
-        shell: tcsh
+        shell: bash
         run: pip install -r tb/bin/requirements.txt
 
       # Install icarus verilog simulator
       - name: Install iverilog
-        shell: tcsh
+        shell: bash
         run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Run simulation
