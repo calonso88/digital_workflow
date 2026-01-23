@@ -14,6 +14,11 @@ jobs:
           name: librelane-logs
           path: ~/librelane_logs_dir
 
+      # Install and run tcsh
+      - name: Install and activate tcsh
+        shell: bash
+        run: sudo apt-get install tcsh
+
       # Install PDK
       - name: Install PDK
         uses: TinyTapeout/ciel-action@v1

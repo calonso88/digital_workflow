@@ -10,6 +10,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      # Install and run tcsh
+      - name: Install and activate tcsh
+        shell: bash
+        run: sudo apt-get install tcsh
+
       # Get python packages
       - name: Install Python packages
         shell: tcsh
