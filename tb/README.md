@@ -4,6 +4,11 @@
 ## Requires libpython3.12-dev
 ## Use IcarusVerilog v12.0+
 
+## Use tcsh shell
+```sh
+tcsh
+```
+
 ## Create python virtual environment
 ```sh
 source ./bin/venv.src.me
