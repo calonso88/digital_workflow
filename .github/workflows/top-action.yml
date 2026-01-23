@@ -1,0 +1,21 @@
+name: Digital Workflow
+
+on: [push, workflow_dispatch]
+
+jobs:
+
+  Run-Verilator-Lint-Workflow:
+    uses: ./.github/workflows/verilator-lint-action.yml
+
+  Run-Behavioural-Simulation-Iverilog-Workflow:
+    uses: ./.github/workflows/beh-sim-iverilog-action.yml
+
+  Run-Behavioural-Simulation-Verilator-Workflow:
+    uses: ./.github/workflows/beh-sim-iverilog-action.yml
+
+  Run-GDS-Workflow:
+    uses: ./.github/workflows/librelane-action.yml
+
+  Run-Gate-Level-Simulation-Workflow:
+    needs: Run-GDS-Workflow
+    uses: ./.github/workflows/gl-sim-iverilog-action.yml

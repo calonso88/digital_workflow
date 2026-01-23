@@ -1,4 +1,4 @@
-name: Behavioural Simulation Workflow
+name: Behavioural Simulation Workflow with iverilog
 
 on: [workflow_dispatch, workflow_call]
 
