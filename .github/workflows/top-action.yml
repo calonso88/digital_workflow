@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/beh-sim-iverilog-action.yml
 
   Run-Behavioural-Simulation-Verilator-Workflow:
-    uses: ./.github/workflows/beh-sim-iverilog-action.yml
+    uses: ./.github/workflows/beh-sim-verilator-action.yml
 
   Run-GDS-Workflow:
     uses: ./.github/workflows/librelane-action.yml
