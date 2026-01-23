@@ -22,15 +22,17 @@ jobs:
           version: latest
           arguments: '--version'
 
-      # Run behavioral simulation with Verilator
-      - name: Verilator Behavioural simulation
+      # Go to TB folder
+      - name: Peprare for running simulation
         shell: bash
         run: |
           cd tb
-          make clean
-          make SIM=verilator
-          # make will return success even if the test fails, so check for failure in the results.xml
-          | grep failure results.xml
+          make clean SIM=verilator
+
+      # Run behavioral simulation with Verilator
+      - name: Verilator Behavioural simulation
+        shell: bash
+        run: make SIM=verilator
 
       # Collect results
       - name: Test Summary
