@@ -9,7 +9,7 @@ jobs:
       # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v5
- 
+
       # Get python packages
       - name: Install Python packages
         shell: bash
@@ -27,7 +27,7 @@ jobs:
         uses: fossi-foundation/verilator-action@v0.3
         with:
           version: latest
-          run: | 
+          run: |
             cd tb
             make clean
             make SIM=verilator
