@@ -3,7 +3,7 @@ name: Behavioural Simulation Workflow with iverilog
 on: [workflow_dispatch, workflow_call]
 
 jobs:
-  Run-Behavioural-Simulation-Workflow:
+  Run-Behavioural-Simulation-Iverilog-Workflow:
     runs-on: ubuntu-24.04
     steps:
       # Checkout repository
@@ -47,7 +47,7 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
-          name: behavioural_test_results
+          name: behavioural_test_results_iverilog
           path: |
             tb/tb.vcd
             tb/tb.fst
