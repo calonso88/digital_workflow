@@ -15,27 +15,19 @@ jobs:
         shell: bash
         run: pip install -r tb/bin/requirements.txt
 
-      # Go to TB folder
-      - name: Peprare for running simulation
+      # Install Verilator
+      - name: Install verilator
         shell: bash
+        run: run: sudo apt-get update && sudo apt-get install -y verilator
+
+      # Run simulation
+      - name: Run tests
         run: |
           cd tb
           make clean
-
-      # Install Verilator
-      - name: Verilator version
-        uses: fossi-foundation/verilator-action@v0.3
-        with:
-          version: latest
-          arguments: '--version'
-
-      # Run behavioral simulation with Verilator
-      - name: Verilator Behavioural simulation
-        uses: fossi-foundation/verilator-action@v0.3
-        with:
-          version: latest
-          run: 'make SIM=verilator'
-        
+          make SIM=verilator
+          # make will return success even if the test fails, so check for failure in the results.xml
+          ! grep failure results.xml
 
       # Collect results
       - name: Test Summary
