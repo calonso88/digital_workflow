@@ -24,7 +24,7 @@ jobs:
 
       # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
       - name: Install iverilog
-        shell: bash
+        shell: tcsh
         run: |
           wget https://github.com/TinyTapeout/iverilog/releases/download/13.0-git-d8c3c51/iverilog_13.0-git-d8c3c51a-1_amd64.deb
           sudo apt-get update -y
@@ -42,12 +42,12 @@ jobs:
 
       # Install required packages
       - name: Install Python packages
-        shell: bash
+        shell: tcsh
         run: pip install -r tb/bin/requirements.txt
 
       # Copy gate level netlist
       - name : Copy Gate Level netlist from artifact
-        shell: bash
+        shell: tcsh
         run: |
           find ~/librelane_logs_dir \
           -path "*/final/nl/i2c_slave.nl.v" \
@@ -56,7 +56,7 @@ jobs:
 
       # Run simulation
       - name: Run Gate Level Simulation tests
-        shell: bash
+        shell: tcsh
         run: |
           cd tb
           rm -f tb.vcd tb.fst results.xml

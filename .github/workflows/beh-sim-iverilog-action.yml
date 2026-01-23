@@ -18,12 +18,12 @@ jobs:
 
       # Install required packages
       - name: Install Python packages
-        shell: bash
+        shell: tcsh
         run: pip install -r tb/bin/requirements.txt
 
       # Install icarus verilog simulator
       - name: Install iverilog
-        shell: bash
+        shell: tcsh
         run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Run simulation

@@ -12,7 +12,7 @@ jobs:
 
       # Get python packages
       - name: Install Python packages
-        shell: bash
+        shell: tcsh
         run: pip install -r tb/bin/requirements.txt
 
       # Install Verilator
@@ -24,7 +24,7 @@ jobs:
 
       # Run behavioral simulation with Verilator
       - name: Verilator Behavioural simulation
-        shell: bash
+        shell: tcsh
         run: |
           cd tb
           make clean
