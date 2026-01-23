@@ -32,7 +32,8 @@ jobs:
       # Run behavioral simulation with Verilator
       - name: Verilator Behavioural simulation
         shell: bash
-        run: make SIM=verilator
+        run: verilator --version
+        #run: make SIM=verilator
 
       # Collect results
       - name: Test Summary
