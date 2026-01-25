@@ -4,7 +4,7 @@ on: [workflow_dispatch, workflow_call]
 
 jobs:
   Run-Behavioural-Simulation-Verilator-Workflow:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-25.04
     steps:
       # Checkout repository
       - name: Checkout code
@@ -18,10 +18,7 @@ jobs:
       # Install Verilator
       - name: Install verilator
         shell: bash
-        run: |
-          wget https://launchpad.net/ubuntu/+archive/primary/+files/verilator_5.032-1_amd64.deb
-          sudo apt-get update -y
-          sudo apt-get install -y ./verilator_5.032-1_amd64.deb
+        run: sudo apt-get update && sudo apt-get install -y verilator
 
       # Run simulation
       - name: Run tests
