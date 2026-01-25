@@ -4,7 +4,7 @@ on: [workflow_dispatch, workflow_call]
 
 jobs:
   Run-Behavioural-Simulation-Verilator-Workflow:
-    runs-on: ubuntu-25.04
+    runs-on: ubuntu-24.04
     steps:
       # Checkout repository
       - name: Checkout code
