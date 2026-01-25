@@ -18,7 +18,10 @@ jobs:
       # Install Verilator
       - name: Install verilator
         shell: bash
-        run: sudo apt-get update && sudo apt-get install -y verilator
+        run: |
+          wget https://launchpad.net/ubuntu/+archive/primary/+files/verilator_5.032-1_amd64.deb
+          sudo apt-get update -y
+          sudo apt-get install -y ./verilator_5.032-1_amd64.deb
 
       # Run simulation
       - name: Run tests
