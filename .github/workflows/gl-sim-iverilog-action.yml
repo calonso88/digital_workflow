@@ -9,7 +9,7 @@ jobs:
 
       # Download Librelane artifact
       - name: Download GDS artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: librelane-logs
           path: ~/librelane_logs_dir
