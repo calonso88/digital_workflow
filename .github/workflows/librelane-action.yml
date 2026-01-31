@@ -24,7 +24,7 @@ jobs:
           arguments: --pdk ihp-sg13g2 ../syn/librelane_config.json
 
       - name: Upload Librelane logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: librelane-logs
           path: syn

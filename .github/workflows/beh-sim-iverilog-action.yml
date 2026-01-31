@@ -45,7 +45,7 @@ jobs:
       # Upload simulation wave dump
       - name: Upload Waveform and Test Results
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: behavioural_test_results_iverilog
           path: |
