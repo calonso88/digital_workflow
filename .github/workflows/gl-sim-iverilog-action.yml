@@ -67,7 +67,7 @@ jobs:
 
       - name: Test Summary
         if: always()
-        uses: test-summary/action@v2.3
+        uses: test-summary/action@v2.4
         with:
           paths: tb/results.xml
 
