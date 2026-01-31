@@ -73,7 +73,7 @@ jobs:
 
       - name: Upload Waveform and Test Results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
             name: gatelevel_test_results_iverilog
             path: |
