@@ -42,10 +42,6 @@ jobs:
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
 
-      # Tree
-      - name: Test Summary
-        run: tree
-
       # Collect results
       - name: Test Summary
         if: always()
@@ -60,6 +56,6 @@ jobs:
         with:
           name: behavioural_test_results_verilator
           path: |
-            tb/tb.vcd
-            tb/tb.fst
+            tb/dump.vcd
+            tb/dump.fst
             tb/results.xml

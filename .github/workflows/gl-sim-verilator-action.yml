@@ -81,6 +81,6 @@ jobs:
         with:
             name: gatelevel_test_results_verilator
             path: |
-              tb/tb.vcd
-              tb/tb.fst
+              tb/dump.vcd
+              tb/dump.fst
               tb/results.xml
