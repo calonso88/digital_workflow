@@ -19,3 +19,7 @@ jobs:
   Run-Gate-Level-Simulation-Iverilog-Workflow:
     needs: Run-GDS-Workflow
     uses: ./.github/workflows/gl-sim-iverilog-action.yml
+
+  Run-Gate-Level-Simulation-Verilator-Workflow:
+    needs: Run-GDS-Workflow
+    uses: ./.github/workflows/gl-sim-verilator-action.yml

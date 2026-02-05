@@ -1,0 +1,86 @@
+name: Gate Level Simulation Workflow with iverilog
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  Run-Gate-Level-Simuation-Iverilog-Workflow:
+    runs-on: ubuntu-24.04
+    steps:
+
+      # Download Librelane artifact
+      - name: Download GDS artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: librelane-logs
+          path: ~/librelane_logs_dir
+
+      # Install PDK
+      - name: Install PDK
+        uses: TinyTapeout/ciel-action@v1
+        with:
+          pdk_name: ihp-sg13g2
+          pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
+          pdk_root: /home/runner/pdk
+
+      # Install Verilator
+      - name: Install verilator
+        shell: bash
+        run: |
+          wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
+          wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx/libjs-sphinxdoc_8.2.3-12_all.deb
+          wget http://ftp.dk.debian.org/debian/pool/main/v/verilator/verilator_5.044-1_amd64.deb
+          sudo apt-get update -y
+          sudo apt-get install -y ./sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
+          sudo apt-get install -y ./libjs-sphinxdoc_8.2.3-12_all.deb
+          sudo apt-get install -y ./verilator_5.044-1_amd64.deb
+
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      # Set Python up
+      - name: Setup python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      # Install required packages
+      - name: Install Python packages
+        shell: bash
+        run: pip install -r tb/bin/requirements.txt
+
+      # Copy gate level netlist
+      - name : Copy Gate Level netlist from artifact
+        shell: bash
+        run: |
+          find ~/librelane_logs_dir \
+          -path "*/final/nl/i2c_slave.nl.v" \
+          -type f \
+          -exec cp {} tb/gate_level_netlist.v \;
+
+      # Run simulation
+      - name: Run Gate Level Simulation tests
+        shell: bash
+        run: |
+          cd tb
+          rm -f tb.vcd tb.fst results.xml
+          make clean
+          make SIM=verilator GATES=yes
+          # `make` will return success even if the tests fail, so check for failure in results.xml
+          ! grep failure results.xml
+
+      - name: Test Summary
+        if: always()
+        uses: test-summary/action@v2.4
+        with:
+          paths: tb/results.xml
+
+      - name: Upload Waveform and Test Results
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+            name: gatelevel_test_results_verilator
+            path: |
+              tb/tb.vcd
+              tb/tb.fst
+              tb/results.xml
