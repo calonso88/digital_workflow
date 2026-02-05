@@ -21,7 +21,7 @@ jobs:
         run: |
           wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
           wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx/libjs-sphinxdoc_8.2.3-12_all.deb
-          wget https://launchpad.net/ubuntu/+source/verilator/5.032-1/+build/29941374/+files/verilator_5.032-1_amd64.deb
+          wget http://ftp.dk.debian.org/debian/pool/main/v/verilator/verilator_5.044-1_amd64.deb
           sudo apt-get update -y
           sudo apt-get install -y ./sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
           sudo apt-get install -y ./libjs-sphinxdoc_8.2.3-12_all.deb
