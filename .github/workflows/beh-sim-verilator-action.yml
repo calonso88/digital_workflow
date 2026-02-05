@@ -37,10 +37,14 @@ jobs:
       - name: Run tests
         run: |
           cd tb
-          make clean
+          make clean SIM=verilator
           make SIM=verilator
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
+
+      # Tree
+      - name: Test Summary
+        run: tree
 
       # Collect results
       - name: Test Summary
