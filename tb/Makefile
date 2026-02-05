@@ -30,6 +30,14 @@ VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 
 endif
 
+
+ifeq ($(SIM),verilator)
+# Coverage for Verilator
+EXTRA_ARGS += --coverage
+# Wave dump for Verilator
+EXTRA_ARGS += --trace --trace-fst --trace-structs
+endif
+
 # Allow sharing configuration between design and testbench via `include`:
 COMPILE_ARGS += -I$(SRC_DIR)
 
