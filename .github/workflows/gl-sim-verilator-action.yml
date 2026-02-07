@@ -1,9 +1,9 @@
-name: Gate Level Simulation Workflow with iverilog
+name: Gate Level Simulation Workflow with Verilator
 
 on: [workflow_dispatch, workflow_call]
 
 jobs:
-  Run-Gate-Level-Simuation-Iverilog-Workflow:
+  Run-Gate-Level-Simuation-Verilator-Workflow:
     runs-on: ubuntu-24.04
     steps:
 
@@ -23,7 +23,7 @@ jobs:
           pdk_root: /home/runner/pdk
 
       # Install Verilator
-      - name: Install verilator
+      - name: Install Verilator
         shell: bash
         run: |
           wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
