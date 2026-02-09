@@ -33,7 +33,7 @@ endif
 
 ifeq ($(SIM),verilator)
 # Enable delays
-EXTRA_ARGS += --timing
+#EXTRA_ARGS += --timing
 # Coverage for Verilator
 EXTRA_ARGS += --coverage
 # Wave dump for Verilator
