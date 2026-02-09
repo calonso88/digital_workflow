@@ -39,7 +39,7 @@ module tb ();
   initial begin
     $dumpfile("tb.fst");
     $dumpvars(0, tb);
-    #1;
+    //#1;
   end
 
 endmodule
