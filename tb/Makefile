@@ -38,6 +38,8 @@ EXTRA_ARGS += --timing
 EXTRA_ARGS += --coverage
 # Wave dump for Verilator
 EXTRA_ARGS += --trace --trace-fst --trace-structs
+# Disable unsupported stuff
+EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
 endif
 
 # Allow sharing configuration between design and testbench via `include`:
