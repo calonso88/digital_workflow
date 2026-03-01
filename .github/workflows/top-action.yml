@@ -1,6 +1,12 @@
 name: Digital Workflow
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    paths:
+      - 'rtl/**'
+  workflow_dispatch:
+    paths:
+      - 'rtl/**'
 
 jobs:
 
