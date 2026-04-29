@@ -4,7 +4,7 @@
 cocotb==2.0.1
 
 # Python framework for tests
-pytest==8.4.2
+pytest==9.0.3
 
 # cocotbext-i2c
 cocotbext-i2c==0.1.2
