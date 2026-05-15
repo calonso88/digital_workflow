@@ -26,7 +26,7 @@ jobs:
       - name: Install iverilog
         shell: bash
         run: |
-          wget https://github.com/TinyTapeout/iverilog/releases/download/13.0/iverilog_13.0-1_amd64.deb
+          wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
           sudo apt-get update -y
           sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
 
