@@ -9,6 +9,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Clone IHP PDK repo
+        run: |
+         git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
+         cd IHP-Open-PDK
+         git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
+         make
+
       - name: Run Librelane Action
         # You may pin to the exact commit or the version.
         # uses: fossi-foundation/librelane-action@ea7ab2054b7e8e5903357b39b20ff3c2ff2f90c2
