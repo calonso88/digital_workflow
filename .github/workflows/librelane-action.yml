@@ -27,8 +27,8 @@ jobs:
           # The working directory to run Librelane in
           working-directory: syn # optional, default is .
           # The arguments to pass to Librelane
-          #arguments: --pdk ihp-sg13g2 ../syn/librelane_config.json
-          arguments: --pdk ihp-sg13cmos5l --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+          arguments: --pdk ihp-sg13g2     --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+          #arguments: --pdk ihp-sg13cmos5l --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
 
       - name: Upload Librelane logs
         uses: actions/upload-artifact@v7
