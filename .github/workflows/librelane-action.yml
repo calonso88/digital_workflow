@@ -17,7 +17,7 @@ jobs:
           # The GitHub repository to clone
           #repo: # optional, default is https://github.com/librelane/librelane
           # The version or branch to checkout
-          branch: dev # optional, default is 2.4.0
+          branch: 3.0.4 # optional, default is 2.4.0
           # The working directory to run Librelane in
           working-directory: syn # optional, default is .
           # The arguments to pass to Librelane
