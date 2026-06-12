@@ -15,6 +15,7 @@ jobs:
          cd IHP-Open-PDK
          git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
          tree
+         pwd
 
 #      - name: Run Librelane Action
 #        # You may pin to the exact commit or the version.
