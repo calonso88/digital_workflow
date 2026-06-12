@@ -14,7 +14,6 @@ jobs:
          git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
          cd IHP-Open-PDK
          git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
-#         tree
          pwd
          tree
 
