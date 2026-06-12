@@ -22,6 +22,15 @@ jobs:
           pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
           pdk_root: /home/runner/pdk
 
+      # Get PDK from github directly, action TinyTapeout/ciel-action@v1 can be removed
+      - name: Clone IHP PDK repo
+        run: |
+         git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
+         cd IHP-Open-PDK
+         git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
+         cd ihp-sg13cmos5l
+         git checkout 1178c4fac07974139cb991e54ccf38adf86be30c
+
       # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
       - name: Install iverilog
         shell: bash
