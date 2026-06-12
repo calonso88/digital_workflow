@@ -14,6 +14,8 @@ jobs:
          git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
          cd IHP-Open-PDK
          git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
+         cd ihp-sg13cmos5l
+         git checkout 1178c4fac07974139cb991e54ccf38adf86be30c
 
       - name: Run Librelane Action
         # You may pin to the exact commit or the version.
@@ -27,8 +29,8 @@ jobs:
           # The working directory to run Librelane in
           working-directory: syn # optional, default is .
           # The arguments to pass to Librelane
-          arguments: --pdk ihp-sg13g2     --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
-          #arguments: --pdk ihp-sg13cmos5l --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+          #arguments: --pdk ihp-sg13g2     --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+          arguments: --pdk ihp-sg13cmos5l --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
 
       - name: Upload Librelane logs
         uses: actions/upload-artifact@v7
