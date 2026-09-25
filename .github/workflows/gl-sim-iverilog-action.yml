@@ -14,30 +14,10 @@ jobs:
           name: librelane-logs
           path: ~/librelane_logs_dir
 
-      # Install PDK
-      - name: Install PDK
-        uses: TinyTapeout/ciel-action@v1
-        with:
-          pdk_name: ihp-sg13g2
-          pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
-          pdk_root: /home/runner/pdk
-
       # Get PDK from github directly, action TinyTapeout/ciel-action@v1 can be removed
       - name: Clone IHP PDK repo
         run: |
          git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
-         cd IHP-Open-PDK
-         git clone https://github.com/IHP-GmbH/ihp-sg13cmos5l.git
-         cd ihp-sg13cmos5l
-         git checkout 1178c4fac07974139cb991e54ccf38adf86be30c
-
-      # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
-      - name: Install iverilog
-        shell: bash
-        run: |
-          wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
-          sudo apt-get update -y
-          sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
 
       # Checkout repository
       - name: Checkout repo
@@ -53,6 +33,14 @@ jobs:
       - name: Install Python packages
         shell: bash
         run: pip install -r tb/bin/requirements.txt
+
+      # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
+      - name: Install iverilog
+        shell: bash
+        run: |
+          wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
+          sudo apt-get update -y
+          sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
 
       # Copy gate level netlist
       - name : Copy Gate Level netlist from artifact
