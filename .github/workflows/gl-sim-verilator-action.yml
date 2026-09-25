@@ -5,6 +5,10 @@ on: [workflow_dispatch, workflow_call]
 jobs:
   Run-Gate-Level-Simuation-Verilator-Workflow:
     runs-on: ubuntu-24.04
+
+    env:
+      VERILATOR_VERSION: "5.052"
+
     steps:
 
       # Download Librelane artifact
@@ -14,25 +18,33 @@ jobs:
           name: librelane-logs
           path: ~/librelane_logs_dir
 
-      # Install PDK
-      - name: Install PDK
-        uses: TinyTapeout/ciel-action@v1
-        with:
-          pdk_name: ihp-sg13g2
-          pdk_version: cb7daaa8901016cf7c5d272dfa322c41f024931f
-          pdk_root: /home/runner/pdk
-
-      # Install Verilator
-      - name: Install Verilator
-        shell: bash
+      # Get PDK from github directly
+      - name: Clone IHP PDK repo
         run: |
-          wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
-          wget http://ftp.dk.debian.org/debian/pool/main/s/sphinx/libjs-sphinxdoc_9.1.0-3_all.deb
-          wget http://ftp.dk.debian.org/debian/pool/main/v/verilator/verilator_5.048-1_amd64.deb
-          sudo apt-get update -y
-          sudo apt-get install -y ./sphinx-rtd-theme-common_3.1.0+dfsg-1_all.deb
-          sudo apt-get install -y ./libjs-sphinxdoc_9.1.0-3_all.deb
-          sudo apt-get install -y ./verilator_5.048-1_amd64.deb
+         git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
+
+      # Install prerequisite packages
+      - name: Install Prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git help2man perl python3 make g++ libfl-dev zlib1g-dev ccache autoconf numactl perl-doc
+
+      - name: Clone and compile Verilator
+        run: |
+          git clone --depth 1 --branch v${{ env.VERILATOR_VERSION }} https://github.com/verilator/verilator.git
+          cd verilator
+          autoconf
+          ./configure --prefix=/home/runner/verilator-dist
+          make -j$(nproc)
+          make install
+
+      - name: Add Verilator to PATH
+        run: |
+          echo "/home/runner/verilator-dist/bin" >> $GITHUB_PATH
+
+      - name: Verify Verilator Version
+        run: |
+          verilator --version
 
       # Checkout repository
       - name: Checkout repo
