@@ -14,7 +14,7 @@ jobs:
           name: librelane-logs
           path: ~/librelane_logs_dir
 
-      # Get PDK from github directly, action TinyTapeout/ciel-action@v1 can be removed
+      # Get PDK from github directly
       - name: Clone IHP PDK repo
         run: |
          git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
