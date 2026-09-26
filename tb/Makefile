@@ -23,9 +23,9 @@ COMPILE_ARGS    += -DFUNCTIONAL
 COMPILE_ARGS    += -DSIM
 
 ifneq ($(REMOTE),yes)
-PDK_ROOT        = $(GITHUB_PATH)/IHP-Open-PDK/ihp-sg13g2
-else
 PDK_ROOT        = /home/repos/IHP-Open-PDK/ihp-sg13g2
+else
+PDK_ROOT        = $(GITHUB_PATH)/IHP-Open-PDK/ihp-sg13g2
 endif
 
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_io/verilog/sg13g2_io.v
