@@ -35,7 +35,7 @@ jobs:
         run: |
           cd verilator
           autoconf
-          ./configure --prefix=${{ env.PROJ_NAME }}/verilator
+          ./configure --prefix=${{ env.HOME }}/verilator
           make -j$(nproc)
           make install
 
@@ -60,15 +60,10 @@ jobs:
         shell: bash
         run: pip install -r ${{ env.PROJ_NAME }}/tb/bin/requirements.txt
 
-      # Move to project dir
-      - name: Go to project dir
-        shell: bash
-        run: cd ${{ env.PROJ_NAME }}
-
       # Run simulation
       - name: Run tests
         run: |
-          cd tb
+          cd ${{ env.PROJ_NAME }}/tb
           make clean SIM=verilator
           make SIM=verilator
           # make will return success even if the test fails, so check for failure in the results.xml
@@ -79,7 +74,7 @@ jobs:
         if: always()
         uses: test-summary/action@v2.6
         with:
-          paths: "tb/results.xml"
+          paths: "${{ env.PROJ_NAME }}/tb/results.xml"
 
       # Upload simulation wave dump
       - name: Upload Waveform and Test Results
@@ -88,6 +83,6 @@ jobs:
         with:
           name: behavioural_test_results_verilator
           path: |
-            tb/dump.vcd
-            tb/dump.fst
-            tb/results.xml
+            ${{ env.PROJ_NAME }}/tb/dump.vcd
+            ${{ env.PROJ_NAME }}/tb/dump.fst
+            ${{ env.PROJ_NAME }}/tb/results.xml
