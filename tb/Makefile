@@ -25,6 +25,7 @@ COMPILE_ARGS    += -DSIM
 PDK_ROOT        ?= /home/runner/pdk/ihp-sg13g2
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_io/verilog/sg13g2_io.v
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
+VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_udp.v
 #PDK_ROOT        ?= /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK/ihp-sg13cmos5l
 #VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13cmos5l_io/verilog/sg13cmos5l_io.v
 #VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13cmos5l_stdcell/verilog/sg13cmos5l_stdcell.v
