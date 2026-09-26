@@ -22,32 +22,23 @@ jobs:
         with:
           repository: IHP-GmbH/IHP-Open-PDK
           ref: dev # Optional: Specify a tag/version, or remove this line for 'master'
-      #    submodules: recursive
+          submodules: recursive
           path: IHP-Open-PDK
 
-      - name: List files
-        run: |
-          ls -la
-
-      # Checkout IHP Open PDK repository
-      #- name: Clone IHP PDK repo
-      #  run: |
-      #   git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
-
-      #- name: Run Librelane Action
-      #  # You may pin to the exact commit or the version.
-      #  # uses: fossi-foundation/librelane-action@ea7ab2054b7e8e5903357b39b20ff3c2ff2f90c2
-      #  uses: fossi-foundation/librelane-action@v0.1
-      #  with:
-      #    # The GitHub repository to clone
-      #    #repo: # optional, default is https://github.com/librelane/librelane
-      #    # The version or branch to checkout
-      #    branch: 3.0.14 # optional, default is 2.4.0
-      #    # The working directory to run Librelane in
-      #    working-directory: syn # optional, default is .
-      #    # The arguments to pass to Librelane
-      #    arguments: --pdk ihp-sg13g2     --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
-      #    #arguments: --pdk ihp-sg13cmos5l --pdk-root /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+      - name: Run Librelane Action
+        # You may pin to the exact commit or the version.
+        # uses: fossi-foundation/librelane-action@ea7ab2054b7e8e5903357b39b20ff3c2ff2f90c2
+        uses: fossi-foundation/librelane-action@v0.1
+        with:
+          # The GitHub repository to clone
+          #repo: # optional, default is https://github.com/librelane/librelane
+          # The version or branch to checkout
+          branch: 3.0.14 # optional, default is 2.4.0
+          # The working directory to run Librelane in
+          working-directory: ${{ env.PROJ_NAME }}/syn # optional, default is .
+          # The arguments to pass to Librelane
+          arguments: --pdk ihp-sg13g2     --pdk-root $HOME/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
+          #arguments: --pdk ihp-sg13cmos5l --pdk-root $HOME/IHP-Open-PDK --manual-pdk ../syn/librelane_config.json
 
       #- name: Upload Librelane logs
       #  uses: actions/upload-artifact@v7
