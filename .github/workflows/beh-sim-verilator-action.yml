@@ -35,14 +35,14 @@ jobs:
         run: |
           cd verilator
           autoconf
-          ./configure --prefix=${{ env.HOME }}/verilator
+          ./configure --prefix=${{ HOME }}/verilator
           make -j$(nproc)
           make install
 
       # Adds verilator to PATH
       - name: Add Verilator to PATH
         run: |
-          echo "${{ env.HOME }}/verilator/bin" >> $GITHUB_PATH
+          echo "${{ HOME }}/verilator/bin" >> $GITHUB_PATH
 
       # Sanity check Verilator version
       - name: Verify Verilator Version
