@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     env:
+      PROJ_NAME: "workflow_sandbox"
       VERILATOR_VERSION: "5.052"
 
     steps:
@@ -16,39 +17,55 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: librelane-logs
-          path: ~/librelane_logs_dir
+          path: librelane_logs_dir
 
-      # Get PDK from github directly
-      - name: Clone IHP PDK repo
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v7
+        with:
+          path: ${{ env.PROJ_NAME }}
+
+      # Copy gate level netlist
+      - name : Copy Gate Level netlist from artifact
+        shell: bash
         run: |
-         git clone --branch dev --recurse-submodules https://github.com/IHP-GmbH/IHP-Open-PDK.git
+          find librelane_logs_dir \
+          -path "*/final/nl/i2c_slave.nl.v" \
+          -type f \
+          -exec cp {} ${{ env.PROJ_NAME }}/tb/gate_level_netlist.v \;
 
-      # Install prerequisite packages
+      # Install Verilator prerequisite packages
       - name: Install Prerequisites
         run: |
           sudo apt-get update
           sudo apt-get install -y git help2man perl python3 make g++ libfl-dev zlib1g-dev ccache autoconf numactl perl-doc
 
-      - name: Clone and compile Verilator
+      # Checkout Verilator
+      - name: Checkout Verilator
+        uses: actions/checkout@v7
+        with:
+          repository: verilator/verilator
+          ref: v5.052 # Optional: Specify a tag/version, or remove this line for 'master'
+          path: verilator
+
+      # Compile Verilator
+      - name: Compile Verilator
         run: |
-          git clone --depth 1 --branch v${{ env.VERILATOR_VERSION }} https://github.com/verilator/verilator.git
           cd verilator
           autoconf
-          ./configure --prefix=/home/runner/verilator-dist
+          ./configure --prefix=$HOME/verilator
           make -j$(nproc)
           make install
 
+      # Adds verilator to PATH
       - name: Add Verilator to PATH
         run: |
-          echo "/home/runner/verilator-dist/bin" >> $GITHUB_PATH
+          echo "$HOME/verilator/bin" >> $GITHUB_PATH
 
+      # Sanity check Verilator version
       - name: Verify Verilator Version
         run: |
           verilator --version
-
-      # Checkout repository
-      - name: Checkout repo
-        uses: actions/checkout@v7
 
       # Set Python up
       - name: Setup python
@@ -59,22 +76,28 @@ jobs:
       # Install required packages
       - name: Install Python packages
         shell: bash
-        run: pip install -r tb/bin/requirements.txt
+        run: pip install -r ${{ env.PROJ_NAME }}/tb/bin/requirements.txt
 
-      # Copy gate level netlist
-      - name : Copy Gate Level netlist from artifact
+      # Checkout IHP Open PDK repository
+      - name: Checkout IHP Open PDK
+        uses: actions/checkout@v7
+        with:
+          repository: IHP-GmbH/IHP-Open-PDK
+          ref: dev # Optional: Specify a tag/version, or remove this line for 'master'
+          submodules: recursive
+          path: IHP-Open-PDK
+
+      # Set PDK_ROOT
+      - name: Configure PDK_ROOT environment variable
         shell: bash
         run: |
-          find ~/librelane_logs_dir \
-          -path "*/final/nl/i2c_slave.nl.v" \
-          -type f \
-          -exec cp {} tb/gate_level_netlist.v \;
+          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK/ihp-sg13g2" >> "$GITHUB_ENV"
 
       # Run simulation
       - name: Run Gate Level Simulation tests
         shell: bash
         run: |
-          cd tb
+          cd ${{ env.PROJ_NAME }}/tb
           rm -f tb.vcd tb.fst results.xml
           make clean SIM=verilator
           make SIM=verilator GATES=yes
@@ -85,7 +108,7 @@ jobs:
         if: always()
         uses: test-summary/action@v2.6
         with:
-          paths: tb/results.xml
+          paths: ${{ env.PROJ_NAME }}/tb/results.xml
 
       - name: Upload Waveform and Test Results
         if: always()
@@ -93,6 +116,6 @@ jobs:
         with:
             name: gatelevel_test_results_verilator
             path: |
-              tb/dump.vcd
-              tb/dump.fst
-              tb/results.xml
+              ${{ env.PROJ_NAME }}/tb/dump.vcd
+              ${{ env.PROJ_NAME }}/tb/dump.fst
+              ${{ env.PROJ_NAME }}/tb/results.xml
