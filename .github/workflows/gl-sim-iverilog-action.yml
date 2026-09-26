@@ -61,10 +61,11 @@ jobs:
           path: IHP-Open-PDK
 
       # Set PDK_ROOT
-      - name: Configure PDK environment
+      - name: Configure PDK_ROOT environment variable
         shell: bash
         run: |
-          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK" >> "$GITHUB_ENV"
+          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK/sg13g2" >> "$GITHUB_ENV"
+
 
       # Run simulation
       - name: Run Gate Level Simulation tests
