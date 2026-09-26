@@ -19,5 +19,3 @@ jobs:
         run: |
           env | sort
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: cat $HOME
-
