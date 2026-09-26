@@ -17,13 +17,17 @@ jobs:
           path: ${{ env.PROJ_NAME }}
 
       # Checkout IHP Open PDK repository
-      - name: Checkout Verilator
+      - name: Checkout IHP Open PDK
         uses: actions/checkout@v7
         with:
           repository: IHP-GmbH/IHP-Open-PDK
           ref: dev # Optional: Specify a tag/version, or remove this line for 'master'
-          submodules: recursive
+      #    submodules: recursive
           path: IHP-Open-PDK
+
+      - name: List files
+        run: |
+          ls -la
 
       # Checkout IHP Open PDK repository
       #- name: Clone IHP PDK repo
