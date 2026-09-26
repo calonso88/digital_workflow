@@ -64,7 +64,7 @@ jobs:
       - name: Configure PDK_ROOT environment variable
         shell: bash
         run: |
-          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK/sg13g2" >> "$GITHUB_ENV"
+          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK/ihp-sg13g2" >> "$GITHUB_ENV"
 
 
       # Run simulation
