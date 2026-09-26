@@ -15,4 +15,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Print env variables
+        run: |
+          env | sort
       - run: echo "🍏 This job's status is ${{ job.status }}."
