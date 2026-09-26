@@ -5,6 +5,10 @@ on: [workflow_dispatch, workflow_call]
 jobs:
   Run-Behavioural-Simulation-Iverilog-Workflow:
     runs-on: ubuntu-24.04
+
+    env:
+      PROJ_NAME: "workflow_sandbox"
+
     steps:
       # Checkout repository
       - name: Checkout repo
@@ -26,7 +30,12 @@ jobs:
       # Install required packages
       - name: Install Python packages
         shell: bash
-        run: pip install -r tb/bin/requirements.txt
+        run: pip install -r ${{ env.PROJ_NAME }}/tb/bin/requirements.txt
+
+      # Move to project dir
+      - name: Go to project dir
+        shell: bash
+        run: cd ${{ env.PROJ_NAME }}
 
       # Run simulation
       - name: Run tests
