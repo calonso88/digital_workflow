@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v7
         with:
-          path: workflow_sandbox
+          path: ${{ env.PROJ_NAME }}
 
       # Install icarus verilog simulator
       - name: Install iverilog

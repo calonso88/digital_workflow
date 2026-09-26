@@ -6,20 +6,23 @@ jobs:
   Run-Behavioural-Simulation-Verilator-Workflow:
     runs-on: ubuntu-24.04
 
+    env:
+      PROJ_NAME: "workflow_sandbox"
+
     steps:
       # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v7
         with:
-          path: workflow_sandbox
+          path: ${{ env.PROJ_NAME }}
 
-      # Install Verilog prerequisite packages
+      # Install Verilator prerequisite packages
       - name: Install Prerequisites
         run: |
           sudo apt-get update
           sudo apt-get install -y git help2man perl python3 make g++ libfl-dev zlib1g-dev ccache autoconf numactl perl-doc
 
-      # Checkout verilator
+      # Checkout Verilator
       - name: Checkout Verilator
         uses: actions/checkout@v7
         with:
@@ -32,14 +35,14 @@ jobs:
         run: |
           cd verilator
           autoconf
-          ./configure --prefix=/home/runner/verilator
+          ./configure --prefix=${{ env.PROJ_NAME }}/verilator
           make -j$(nproc)
           make install
 
       # Adds verilator to PATH
       - name: Add Verilator to PATH
         run: |
-          echo "/home/runner/verilator/bin" >> $GITHUB_PATH
+          echo "${{ env.HOME }}/verilator/bin" >> $GITHUB_PATH
 
       # Sanity check Verilator version
       - name: Verify Verilator Version
@@ -55,7 +58,12 @@ jobs:
       # Get python packages
       - name: Install Python packages
         shell: bash
-        run: pip install -r tb/bin/requirements.txt
+        run: pip install -r ${{ env.PROJ_NAME }}/tb/bin/requirements.txt
+
+      # Move to project dir
+      - name: Go to project dir
+        shell: bash
+        run: cd ${{ env.PROJ_NAME }}
 
       # Run simulation
       - name: Run tests
