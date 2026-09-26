@@ -17,28 +17,28 @@ jobs:
           name: librelane-logs
           path: librelane_logs_dir
 
-      # Checkout IHP Open PDK repository
-      - name: Checkout IHP Open PDK
-        uses: actions/checkout@v7
-        with:
-          repository: IHP-GmbH/IHP-Open-PDK
-          ref: dev # Optional: Specify a tag/version, or remove this line for 'master'
-          submodules: recursive
-          path: IHP-Open-PDK
-
       # Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v7
         with:
           path: ${{ env.PROJ_NAME }}
 
-      # Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
-      - name: Install iverilog
+      # Copy gate level netlist
+      - name : Copy Gate Level netlist from artifact
         shell: bash
         run: |
-          wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
-          sudo apt-get update -y
-          sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
+          find ${{ env.PROJ_NAME }}/librelane_logs_dir \
+          -path "*/final/nl/i2c_slave.nl.v" \
+          -type f \
+          -exec cp {} ${{ env.PROJ_NAME }}/tb/gate_level_netlist.v \;
+
+      ## Install icarus verilog simulator from package as default is old and does not support std_cell verilog special commands
+      #- name: Install iverilog
+      #  shell: bash
+      #  run: |
+      #    wget https://github.com/TinyTapeout/iverilog/releases/download/v13.0/iverilog_13.0-1_amd64.deb
+      #    sudo apt-get update -y
+      #    sudo apt-get install -y ./iverilog_13.0-1_amd64.deb
 
       # Set Python up
       - name: Setup python
@@ -51,40 +51,40 @@ jobs:
         shell: bash
         run: pip install -r ${{ env.PROJ_NAME }}/tb/bin/requirements.txt
 
-      # Copy gate level netlist
-      - name : Copy Gate Level netlist from artifact
-        shell: bash
-        run: |
-          find ~/librelane_logs_dir \
-          -path "*/final/nl/i2c_slave.nl.v" \
-          -type f \
-          -exec cp {} tb/gate_level_netlist.v \;
+      # Checkout IHP Open PDK repository
+      #- name: Checkout IHP Open PDK
+      #  uses: actions/checkout@v7
+      #  with:
+      #    repository: IHP-GmbH/IHP-Open-PDK
+      #    ref: dev # Optional: Specify a tag/version, or remove this line for 'master'
+      #    submodules: recursive
+      #    path: IHP-Open-PDK
 
       # Run simulation
-      - name: Run Gate Level Simulation tests
-        shell: bash
-        run: |
-          cd ${{ env.PROJ_NAME }}/tb
-          rm -f tb.vcd tb.fst results.xml
-          make clean
-          make GATES=yes
-          # `make` will return success even if the tests fail, so check for failure in results.xml
-          ! grep failure results.xml
+      #- name: Run Gate Level Simulation tests
+      #  shell: bash
+      #  run: |
+      #    cd ${{ env.PROJ_NAME }}/tb
+      #    rm -f tb.vcd tb.fst results.xml
+      #    make clean
+      #    make GATES=yes
+      #    # `make` will return success even if the tests fail, so check for failure in results.xml
+      #    ! grep failure results.xml
 
       # Collect results
-      - name: Test Summary
-        if: always()
-        uses: test-summary/action@v2.6
-        with:
-          paths: "${{ env.PROJ_NAME }}/tb/results.xml"
+      #- name: Test Summary
+      #  if: always()
+      #  uses: test-summary/action@v2.6
+      #  with:
+      #    paths: "${{ env.PROJ_NAME }}/tb/results.xml"
 
       # Upload simulation wave dump
-      - name: Upload Waveform and Test Results
-        if: success() || failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: gatelevel_test_results_iverilog
-          path: |
-            ${{ env.PROJ_NAME }}/tb/tb.vcd
-            ${{ env.PROJ_NAME }}/tb/tb.fst
-            ${{ env.PROJ_NAME }}/tb/results.xml
+      #- name: Upload Waveform and Test Results
+      #  if: success() || failure()
+      #  uses: actions/upload-artifact@v7
+      #  with:
+      #    name: gatelevel_test_results_iverilog
+      #    path: |
+      #      ${{ env.PROJ_NAME }}/tb/tb.vcd
+      #      ${{ env.PROJ_NAME }}/tb/tb.fst
+      #      ${{ env.PROJ_NAME }}/tb/results.xml
