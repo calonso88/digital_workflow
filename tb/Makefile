@@ -22,12 +22,7 @@ COMPILE_ARGS    += -DGL_TEST
 COMPILE_ARGS    += -DFUNCTIONAL
 COMPILE_ARGS    += -DSIM
 
-ifneq ($(REMOTE),yes)
-PDK_ROOT        = /home/repos/IHP-Open-PDK/ihp-sg13g2
-else
-PDK_ROOT        = $(GITHUB_PATH)/IHP-Open-PDK/ihp-sg13g2
-endif
-
+PDK_ROOT        ?= /home/runner/pdk/ihp-sg13g2
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_io/verilog/sg13g2_io.v
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
 #PDK_ROOT        ?= /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK/ihp-sg13cmos5l

@@ -60,6 +60,12 @@ jobs:
           submodules: recursive
           path: IHP-Open-PDK
 
+      # Set PDK_ROOT
+      - name: Configure PDK environment
+        shell: bash
+        run: |
+          echo "PDK_ROOT=$(pwd)/IHP-Open-PDK" >> "$GITHUB_ENV"
+
       # Run simulation
       - name: Run Gate Level Simulation tests
         shell: bash
@@ -67,7 +73,7 @@ jobs:
           cd ${{ env.PROJ_NAME }}/tb
           rm -f tb.vcd tb.fst results.xml
           make clean
-          make GATES=yes REMOTE=yes
+          make GATES=yes
           # `make` will return success even if the tests fail, so check for failure in results.xml
           ! grep failure results.xml
 
