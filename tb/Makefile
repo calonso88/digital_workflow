@@ -14,6 +14,17 @@ ifneq ($(GATES),yes)
 SIM_BUILD       = sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
 
+ifeq ($(SIM),verilator)
+# Enable delays
+#EXTRA_ARGS += --timing
+# Coverage for Verilator
+#EXTRA_ARGS += --coverage
+# Wave dump for Verilator
+EXTRA_ARGS += --trace --trace-fst --trace-structs
+# Disable unsupported stuff
+#EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
+endif
+
 else
 
 # Gate level simulation:
@@ -26,7 +37,6 @@ PDK_ROOT        ?= /home/runner/pdk/ihp-sg13g2
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_io/verilog/sg13g2_io.v
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
 VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_udp.v
-#PDK_ROOT        ?= /home/runner/work/digital_workflow/digital_workflow/IHP-Open-PDK/ihp-sg13cmos5l
 #VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13cmos5l_io/verilog/sg13cmos5l_io.v
 #VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13cmos5l_stdcell/verilog/sg13cmos5l_stdcell.v
 #VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13cmos5l_stdcell/verilog/sg13cmos5l_udp.v
@@ -34,19 +44,24 @@ VERILOG_SOURCES += $(PDK_ROOT)/libs.ref/sg13g2_stdcell/verilog/sg13g2_udp.v
 # this gets copied in by the GDS action workflow
 VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 
-endif
-
 
 ifeq ($(SIM),verilator)
 # Enable delays
-#EXTRA_ARGS += --timing
+EXTRA_ARGS += --timing
 # Coverage for Verilator
 #EXTRA_ARGS += --coverage
 # Wave dump for Verilator
 EXTRA_ARGS += --trace --trace-fst --trace-structs
 # Disable unsupported stuff
-#EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
+EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
+#EXTRA_ARGS += -Wno-PORTCONN
+#EXTRA_ARGS += -Wno-DECLFILENAME
+#EXTRA_ARGS += -Wno-UNOPTFLAT
+#EXTRA_ARGS += -Wno-SYSCONNECT
 endif
+
+endif
+
 
 # Allow sharing configuration between design and testbench via `include`:
 COMPILE_ARGS += -I$(SRC_DIR)
