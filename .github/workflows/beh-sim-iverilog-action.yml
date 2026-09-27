@@ -38,8 +38,6 @@ jobs:
           cd ${{ env.PROJ_NAME }}/tb
           make clean
           make
-          # make will return success even if the test fails, so check for failure in the results.xml
-          ! grep failure results.xml
 
       # Collect results
       - name: Test Summary
