@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: verilator/verilator
-          ref: v5.052 # Optional: Specify a tag/version, or remove this line for 'master'
+          ref: v5.036 # Optioal: Specify a tag/version, or remove this line for 'master'
           path: verilator
 
       # Compile Verilator
