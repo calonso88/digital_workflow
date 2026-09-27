@@ -8,7 +8,7 @@ jobs:
 
     env:
       PROJ_NAME: "workflow_sandbox"
-      VERILATOR_VERSION: "5.052"
+      VERILATOR_VERSION: "5.040"
 
     steps:
 
@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: verilator/verilator
-          ref: v5.036 # Optional: Specify a tag/version, or remove this line for 'master'
+          ref: ${{ env.VERILATOR_VERSION }} # Optional: Specify a tag/version, or remove this line for 'master'
           path: verilator
 
       # Compile Verilator
