@@ -39,13 +39,13 @@ endif
 
 ifeq ($(SIM),verilator)
 # Enable delays
-EXTRA_ARGS += --timing
+#EXTRA_ARGS += --timing
 # Coverage for Verilator
-EXTRA_ARGS += --coverage
+#EXTRA_ARGS += --coverage
 # Wave dump for Verilator
 EXTRA_ARGS += --trace --trace-fst --trace-structs
 # Disable unsupported stuff
-EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
+#EXTRA_ARGS += -Wno-SPECIFYIGN -Wno-PINMISSING
 endif
 
 # Allow sharing configuration between design and testbench via `include`:
