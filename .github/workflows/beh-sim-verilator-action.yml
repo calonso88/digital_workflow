@@ -8,7 +8,7 @@ jobs:
 
     env:
       PROJ_NAME: "workflow_sandbox"
-      VERILATOR_VERSION: "5.040"
+      VERILATOR_VERSION: "v5.040"
 
     steps:
       # Checkout repository
