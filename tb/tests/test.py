@@ -68,6 +68,6 @@ async def test_project(dut):
   reg0 = await i2c_read(dut, i2c_master, 0x70, 0)
 
   # Compare results
-  #assert bytes([data0]) == reg0
+  assert bytes([data0]) == reg0
 
   await Timer(1, unit="us")
