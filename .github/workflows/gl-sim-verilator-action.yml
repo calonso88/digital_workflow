@@ -114,6 +114,6 @@ jobs:
         with:
             name: gatelevel_test_results_verilator
             path: |
-              ${{ env.PROJ_NAME }}/tb/dump.vcd
-              ${{ env.PROJ_NAME }}/tb/dump.fst
+              ${{ env.PROJ_NAME }}/tb/tb.vcd
+              ${{ env.PROJ_NAME }}/tb/tb.fst
               ${{ env.PROJ_NAME }}/tb/results.xml
