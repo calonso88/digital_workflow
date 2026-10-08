@@ -66,8 +66,7 @@ jobs:
       - name: Run tests
         run: |
           cd ${{ env.PROJ_NAME }}/tb
-          make clean SIM=verilator
-          make SIM=verilator
+          make -B FST=1 SIM=verilator
 
       # Collect results
       - name: Test Summary
