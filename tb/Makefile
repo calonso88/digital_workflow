@@ -47,7 +47,7 @@ VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 
 ifeq ($(SIM),verilator)
 # Enable delays
-EXTRA_ARGS += --timing
+#EXTRA_ARGS += --timing
 # Coverage for Verilator
 #EXTRA_ARGS += --coverage
 # Wave dump for Verilator
